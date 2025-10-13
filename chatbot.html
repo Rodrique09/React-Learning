@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatBot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- Add dayjs -->
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function ChatInput(){
+        return (
+          // <input />
+          /* we are using <></> (these are called fragements) 
+          instead of <div></div> to avoid adding extra nodes to the DOM(Document Object Model) */
+          <>
+          <input placeholder ="Send a message to the ChatBot" size ="40"></input>
+          <button>Send</button>
+          </>
+        );
+      }
+      
+      function ChatMessage(props){
+
+        // const message = props.message;
+        // const sender = props.sender;
+        // we can also do the above in one line using destructuring
+
+
+        // we can also destructure in the function parameter itself
+        // function ChatMessage({message, sender}){
+
+        // destructuring
+        const {message, sender} = props;
+
+        // conditional rendering
+        // if(sender === "robot"){
+        //   return(
+        //     <div>
+        //       <img src="Robot.png" width ="50" alt="Cartoon robot with a square head, round eyes, and an antenna on top, smiling and facing forward, with a speech bubble saying Hello. The background is plain black, and the overall tone is friendly and welcoming." />
+        //       {message}
+        //     </div>
+        //   )
+        //}
+
+        return(
+          //<div> is a block element = they take up an entire line by itself
+          // so thats why we do not use <> here becuase we need a new line for each message
+
+          //so && is like an if statement, 
+          // if the condition is true then it will render the second part
+          <div>
+            {sender === "robot" && <img src="Robot.png" width ="50" alt="Robot" />}
+            {message}
+            {sender === "user" && <img src="Human.png" width ="50" alt="Human" />}
+          </div>
+        );
+      }
+
+      function ChatMessages(){
+        const chatMessage = [{
+          message: 'Hello ChatBot',
+          sender: 'user',
+          id: 'id1'
+        },{
+          message: 'Hey! How can I help you?',
+          sender: 'robot',
+          id: 'id2'
+        },{
+          message: 'Can you get me todays date',
+          sender: 'user',
+          id: 'id3'
+        },{
+          message: `Today is ${dayjs().format('MMMM D, YYYY')}`,
+          sender: 'robot',
+          id: 'id4'
+        }
+      ];
+
+      return(
+        <>
+        {
+            chatMessage.map((chatMessage) => 
+            {
+              return(
+                <ChatMessage 
+                message = {chatMessage.message} 
+                sender = {chatMessage.sender}
+                key = {chatMessage.id}
+                />
+              )
+              }
+            )
+          }
+          </>
+      )
+      }
+
+      function App(){
+
+        return (
+          <>
+            <ChatInput />
+            <ChatMessages />
+          </>
+        )
+      }
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
