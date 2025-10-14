@@ -77,9 +77,7 @@
           value = {inputText} onKeyDown = {handleKeyDown} disabled={isLoading}
           ></input>
           <button onClick = {SendMessage} disabled = {!inputText.trim() || isLoading}>
-          
             {isLoading ? 'Sending ...' : 'Send'}
-            
           </button>
           </>
         );
