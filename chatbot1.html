@@ -2,6 +2,66 @@
 <html>
   <head>
     <title>ChatBot</title>
+    <style>
+        .send-button:enabled{
+            background-color: rgb(0, 123, 255);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+        .send-button:disabled {
+            opacity: 0.5;
+            background-color: rgb(4, 0, 255);
+            color: #dfd5e6;
+            cursor: not-allowed;
+            padding: 12px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+        .chat-input{
+            padding: 12px 15px;
+            border-radius: 10px;
+            border-width: 1px;
+            border: 2px solid #ccc;
+            font-size: 15px;
+            flex-grow: 1;
+        }
+        .chat-input-container{
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .app-container{
+           max-width: 600px;
+           margin-left: auto;
+           margin-right: auto;
+        }
+        .chat-message-user{
+            justify-content: end;
+            background-color: #DCF8C6;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px;
+            display: flex;
+            max-width: 80%;
+        }
+        .chat-message-robot{
+            justify-content: start;
+            background-color: #2fbdece0;
+            padding: 10px;
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            margin: 10px;
+            display: flex;
+            max-width: 80%;
+        }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -72,14 +132,14 @@
         }
 
         return (
-          <>
-          <input placeholder ={isLoading ? "Waiting for the response ..." :"Send a message to the ChatBot"} size ="40" onChange ={saveInputText}
-          value = {inputText} onKeyDown = {handleKeyDown} disabled={isLoading}
+          <div className = "chat-input-container">
+          <input className = "chat-input" placeholder ={isLoading ? "Waiting for the response ..." :"Send a message to the ChatBot"} size ="40" onChange ={saveInputText}
+          value = {inputText} onKeyDown = {handleKeyDown} disabled={isLoading} 
           ></input>
-          <button onClick = {SendMessage} disabled = {!inputText.trim() || isLoading}>
+          <button className = "send-button" onClick = {SendMessage} disabled = {!inputText.trim() || isLoading}>
             {isLoading ? 'Sending ...' : 'Send'}
           </button>
-          </>
+          </div>
         );
       }
       
@@ -87,7 +147,7 @@
         const {message, sender} = props;
 
         return(
-          <div>
+          <div className = {sender === 'user' ? 'chat-message-user' : 'chat-message-robot'}>
             {sender === "robot" && <img src="Robot.png" width ="50" alt="Robot" />}
             {message}
             {sender === "user" && <img src="Human.png" width ="50" alt="Human" />}
@@ -137,7 +197,7 @@
         }]);
 
         return (
-          <>
+          <div className = "app-container">
             <ChatInput 
                 chatMessages = {chatMessages}
                 setChatMessages = {setChatMessages}
@@ -145,7 +205,7 @@
             <ChatMessages 
                 chatMessages = {chatMessages}
             />
-          </>
+          </div>
         )
       }
 
