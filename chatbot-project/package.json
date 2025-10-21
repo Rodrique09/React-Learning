@@ -9,10 +9,11 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "mktest":"mkdir test",
-    "rmtest":"rmdir test"
+    "mktest": "mkdir test",
+    "rmtest": "rmdir test"
   },
   "dependencies": {
+    "dayjs": "^1.11.18",
     "mktest": "^0.0.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
