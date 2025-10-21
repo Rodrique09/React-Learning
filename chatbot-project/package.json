@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "jarvis": "echo 'Good morning, sir. Initializing JARVIS systems...' && vite",
+    "jarvis": "echo 'Good morning, sir. Initializing JARVIS systems....' && vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
