@@ -29,6 +29,9 @@
     width: 45px;
     height: 45px;
     flex-shrink: 0;
+    height: 45px;
+    border-radius: 45px;
+    object-fit: cover;
 }
 .loading-image{
     height: 40px;
