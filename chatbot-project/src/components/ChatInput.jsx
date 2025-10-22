@@ -63,6 +63,9 @@ function handleKeyDown(event){
         setInputText('');
     }
 }
+function ClearMessage(){
+    setChatMessages([]);
+}
 
 return (
     <div className = "chat-input-container">
@@ -72,6 +75,7 @@ return (
     <button className = "send-button" onClick = {SendMessage} disabled = {!inputText.trim() || isLoading}>
     {isLoading ? 'Sending ...' : 'Send'}
     </button>
+    <button className = "clear-button" onClick = {ClearMessage}>Clear</button>
     </div>
 );
 }
