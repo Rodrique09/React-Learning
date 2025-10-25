@@ -19,7 +19,7 @@ export const TrackingPage = () => {
                     <div class="product-info">
                         Black and Gray Athletic Cotton Socks - 6 Pairs
                     </div>
-
+                    
                     <div class="product-info">
                         Quantity: 1
                     </div>
