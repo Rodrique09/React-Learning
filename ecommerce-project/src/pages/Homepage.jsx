@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { useEffect,useState } from 'react';
 import './HomePage.css';
 import { Header } from '../components/Header.jsx';
 import CheckmarkIcon from '../assets/images/icons/checkmark.png';
-import { products } from '../../starting-code/data/products.js';
+// We don't need this static data import anymore since we are fetching
+// the data using useState and useEffect
+// import { products } from '../../starting-code/data/products.js';
 
 // Import all product images
 const productImages = import.meta.glob('../assets/images/products/*.{jpg,png,jpeg}', {
@@ -32,11 +35,20 @@ const getRatingImage = (stars) => {
 
 
 export const HomePage = () => {
+    
+    const [products, setProducts] = useState([]);
 
-    axios.get('http://localhost:3000/api/products')
+    // We used fetch() before, but to made the code less complex for now, we are using axios 
+    // directly here
+
+    // Also we need to use useEffect to avoid infinite loop of requests
+    useEffect(() => {
+      axios.get('http://localhost:3000/api/products')
         .then((response) => {
-            response.data;
+            setProducts(response.data);
      });
+    },[]); // [] is an empty array of dependencies,
+    // so this effect runs only once when the component mounts
 
     return (
         <>
