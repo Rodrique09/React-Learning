@@ -4,15 +4,15 @@ import CheckmarkIcon from '../assets/images/icons/checkmark.png';
 import { products } from '../../starting-code/data/products.js';
 
 // Import all product images
-const productImages = import.meta.glob('../assets/images/products/*.{jpg,png,jpeg}', { 
-    eager: true, 
-    import: 'default' 
+const productImages = import.meta.glob('../assets/images/products/*.{jpg,png,jpeg}', {
+    eager: true,
+    import: 'default'
 });
 
 // Import all rating images
-const ratingImages = import.meta.glob('../assets/images/ratings/*.png', { 
-    eager: true, 
-    import: 'default' 
+const ratingImages = import.meta.glob('../assets/images/ratings/*.png', {
+    eager: true,
+    import: 'default'
 });
 
 // Helper function to get the correct image path
@@ -31,6 +31,14 @@ const getRatingImage = (stars) => {
 
 
 export const HomePage = () => {
+
+    fetch('http://localhost:3000/api/products')
+        .then((response) => {
+            return response.json()
+        }).then((data) => (
+            console.log(data)
+        ));
+
     return (
         <>
             <title>Home Page</title>
@@ -49,7 +57,7 @@ export const HomePage = () => {
                                     </div>
 
                                     <div className="product-name limit-text-to-2-lines">
-                                        Black and Gray Athletic Cotton Socks - 6 Pairs
+                                        {product.name}
                                     </div>
 
                                     <div className="product-rating-container">
