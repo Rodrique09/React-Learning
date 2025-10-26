@@ -3,6 +3,7 @@ import { HomePage } from './pages/Homepage'
 import { CheckoutPage } from './pages/checkout/CheckoutPage'
 import { OrdersPage } from './pages/OrdersPage'
 import { TrackingPage } from './pages/TrackingPage'
+import { ErrorPage } from './pages/ErrorPage'
 import './App.css'
 import './index.css'
 
@@ -14,6 +15,7 @@ const App = () =>{
       <Route path = "checkout" element =  {<CheckoutPage/>} />
       <Route path = "orders" element = {<OrdersPage/>} />
       <Route path = "tracking" element = {<TrackingPage />} />
+      <Route path = "*" element = {<ErrorPage />} />
     </Routes>
   )
 }
