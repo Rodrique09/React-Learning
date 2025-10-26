@@ -1,3 +1,4 @@
+import axios from 'axios';
 import './HomePage.css';
 import { Header } from '../components/Header.jsx';
 import CheckmarkIcon from '../assets/images/icons/checkmark.png';
@@ -32,12 +33,10 @@ const getRatingImage = (stars) => {
 
 export const HomePage = () => {
 
-    fetch('http://localhost:3000/api/products')
+    axios.get('http://localhost:3000/api/products')
         .then((response) => {
-            return response.json()
-        }).then((data) => (
-            console.log(data)
-        ));
+            response.data;
+     });
 
     return (
         <>
