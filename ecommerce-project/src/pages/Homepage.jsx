@@ -37,6 +37,7 @@ const getRatingImage = (stars) => {
 export const HomePage = () => {
     
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
 
     // We used fetch() before, but to made the code less complex for now, we are using axios 
     // directly here
@@ -50,10 +51,15 @@ export const HomePage = () => {
     },[]); // [] is an empty array of dependencies,
     // so this effect runs only once when the component mounts
 
+    axios.get('http://localhost:3000/api/cart-items')
+        .then((response) => {
+            setCart(response.data);
+        });
+
     return (
         <>
             <title>Home Page</title>
-            <Header />
+            <Header cart={cart}/>
             <link rel="icon" type="image/svg+xml" href="/home-favicon.png" />
             <div className="home-page">
                 <div className="products-grid">
