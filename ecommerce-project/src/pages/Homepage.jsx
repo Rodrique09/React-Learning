@@ -34,10 +34,9 @@ const getRatingImage = (stars) => {
 };
 
 
-export const HomePage = () => {
+export const HomePage = ({cart}) => {
     
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
 
     // We used fetch() before, but to made the code less complex for now, we are using axios 
     // directly here
@@ -50,11 +49,6 @@ export const HomePage = () => {
      });
     },[]); // [] is an empty array of dependencies,
     // so this effect runs only once when the component mounts
-
-    axios.get('/api/cart-items')
-        .then((response) => {
-            setCart(response.data);
-        });
 
     return (
         <>
