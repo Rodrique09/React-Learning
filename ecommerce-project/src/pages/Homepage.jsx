@@ -3,6 +3,7 @@ import { useEffect,useState } from 'react';
 import './HomePage.css';
 import { Header } from '../components/Header.jsx';
 import CheckmarkIcon from '../assets/images/icons/checkmark.png';
+import { formatMoney } from '../utils/money.js';
 // We don't need this static data import anymore since we are fetching
 // the data using useState and useEffect
 // import { products } from '../../starting-code/data/products.js';
@@ -80,7 +81,7 @@ export const HomePage = ({cart}) => {
                                     </div>
 
                                     <div className="product-price">
-                                        ${(product.priceCents / 100).toFixed(2)}
+                                        {formatMoney(product.priceCents)}
                                     </div>
 
                                     <div className="product-quantity-container">
