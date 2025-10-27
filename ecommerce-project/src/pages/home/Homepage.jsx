@@ -16,10 +16,11 @@ export const HomePage = ({cart}) => {
 
     // Also we need to use useEffect to avoid infinite loop of requests
     useEffect(() => {
-      axios.get('/api/products')
-        .then((response) => {
+        const getHomeData = async () => {
+                  const response = await axios.get('/api/products')
             setProducts(response.data);
-     });
+        };
+        getHomeData();
     },[]); // [] is an empty array of dependencies,
     // so this effect runs only once when the component mounts
 
