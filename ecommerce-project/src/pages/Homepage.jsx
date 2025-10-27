@@ -44,14 +44,14 @@ export const HomePage = () => {
 
     // Also we need to use useEffect to avoid infinite loop of requests
     useEffect(() => {
-      axios.get('http://localhost:3000/api/products')
+      axios.get('/api/products')
         .then((response) => {
             setProducts(response.data);
      });
     },[]); // [] is an empty array of dependencies,
     // so this effect runs only once when the component mounts
 
-    axios.get('http://localhost:3000/api/cart-items')
+    axios.get('/api/cart-items')
         .then((response) => {
             setCart(response.data);
         });
