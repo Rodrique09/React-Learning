@@ -13,8 +13,8 @@ export const OrdersPage = ({ cart }) => {
     useEffect(() => {
 
         const fetchOrders = async () => {
-        axios.get('/api/orders?expand=products')
-                const response = await setOrders(response.data);
+        const response = await axios.get('/api/orders?expand=products')
+                setOrders(response.data);
         }
         fetchOrders();
     }, [])
