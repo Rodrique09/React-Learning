@@ -1,7 +1,10 @@
 import './ErrorPage.css'
-
-export const ErrorPage = () => {
+import { Header } from '../components/Header'
+export const ErrorPage = ({ cart }) => {
     return (
-        <header>404: Page not Found</header>
+        <div className="error-page-container">
+            <Header cart={cart} />
+            <header className="error-page-header">404: Page not Found</header>
+        </div>
     )
 }
