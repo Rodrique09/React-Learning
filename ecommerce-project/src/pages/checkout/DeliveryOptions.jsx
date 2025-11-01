@@ -8,7 +8,7 @@ const DeliveryOptions = ({cartItem, deliveryOptions}) => {
                 Choose a delivery option:
             </div>
             {deliveryOptions.map((deliveryOption) => {
-                let priceString = 'FREE SHIPPING';
+                let priceString = 'FREE SHIPPING'
 
                 if (deliveryOption.priceCents > 0) {
                     priceString = `${formatMoney(deliveryOption.priceCents)} - Shipping`
@@ -28,7 +28,7 @@ const DeliveryOptions = ({cartItem, deliveryOptions}) => {
                         </div>
                     </div>
                 )
-            })};
+            })}
         </div>
     )
 }

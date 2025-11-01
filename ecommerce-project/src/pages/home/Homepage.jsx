@@ -7,7 +7,7 @@ import ProductsGrid from './ProductsGrid';
 // the data using useState and useEffect
 // import { products } from '../../starting-code/data/products.js';
 
-export const HomePage = ({cart}) => {
+export const HomePage = ({ cart, loadCart }) => {
     
     const [products, setProducts] = useState([]);
 
@@ -30,7 +30,7 @@ export const HomePage = ({cart}) => {
             <Header cart={cart}/>
             <link rel="icon" type="image/svg+xml" href="/home-favicon.png" />
             <div className="home-page">
-            <ProductsGrid products={products}/>
+            <ProductsGrid products={products} loadCart={loadCart}/>
             </div>
         </>
     )
