@@ -9,6 +9,8 @@ import { ErrorPage } from './pages/ErrorPage'
 import './App.css'
 import './index.css'
 
+window.axios = axios;
+
 const App = () => {
   const [cart, setCart] = useState([]);
 

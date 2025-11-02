@@ -1,12 +1,34 @@
 
-import {NavLink} from 'react-router'
+import { NavLink, useNavigate, useSearchParams } from 'react-router'
 import './Header.css'
 import CartIcon from '../assets/images/icons/cart-icon.png';
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import LogoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
+import { useState } from 'react';
 
 export const Header = ({ cart }) => {
+
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    const searchText = searchParams.get('');
+
+    const [search, setSearch] = useState(searchText || '');
+
+    const updateSearch = (event) => {
+        setSearch(event.target.value);
+    }
+
+    const searchProducts = () => {
+        navigate(`/?search=${search}`);
+    }
+
+    const pressKeys = (event) => {
+        if(event.key === "Enter"){
+            searchProducts();
+        }
+    }
 
     let totalQuantity = 0;
     cart.forEach((cartItem) => {
@@ -18,16 +40,16 @@ export const Header = ({ cart }) => {
             <div className="left-section">
                 <NavLink to="/" className="header-link">
                     <img className="logo"
-                        src= {LogoWhite} />
+                        src={LogoWhite} />
                     <img className="mobile-logo"
                         src={MobileLogoWhite} />
                 </NavLink>
             </div>
 
             <div className="middle-section">
-                <input className="search-bar" type="text" placeholder="Search" />
+                <input className="search-bar" type="text" placeholder="Search" value={search} onChange={updateSearch} onKeyDown={pressKeys}/>
 
-                <button className="search-button">
+                <button className="search-button" onClick={searchProducts}>
                     <img className="search-icon" src={SearchIcon} />
                 </button>
             </div>
@@ -39,7 +61,7 @@ export const Header = ({ cart }) => {
                 </NavLink>
 
                 <NavLink className="cart-link header-link" to="/checkout">
-                    <img className="cart-icon" src= {CartIcon}/>
+                    <img className="cart-icon" src={CartIcon} />
                     <div className="cart-quantity">{totalQuantity}</div>
                     <div className="cart-text">Cart</div>
                 </NavLink>
