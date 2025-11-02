@@ -5,7 +5,7 @@ import axios from 'axios';
 import { OrdersGrid } from './OrdersGrid';
 
 
-export const OrdersPage = ({ cart }) => {
+export const OrdersPage = ({ cart , loadCart}) => {
 
     const [orders, setOrders] = useState([]);
 
@@ -24,8 +24,7 @@ export const OrdersPage = ({ cart }) => {
             <link rel="icon" type="image/svg+xml" href="/orders-favicon.png" />
             <div className="orders-page">
                 <div className="page-title">Your Orders</div>
-
-                <OrdersGrid orders={orders} />
+                <OrdersGrid orders={orders} loadCart={loadCart}/>
             </div>
         </>
     )
